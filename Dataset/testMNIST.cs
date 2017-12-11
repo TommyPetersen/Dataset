@@ -44,8 +44,30 @@ namespace Dataset
         static void Main(string[] args)
         {
             random = new Random();
-            testClassMNIST();
+            writeImage();
+            //testClassMNIST();
             //testRandomImage();
+        }
+
+        static void writeImage()
+        {
+            MNIST mnist = new MNIST();
+
+            mnist.loadTrainingSetFiles(trainingImagesFileName, trainingLabelsFileName);
+
+            int i;
+
+            while (Console.ReadLine().Equals(""))
+            {
+                i = random.Next(60000);
+                Console.WriteLine("trainingImages[" + i + "]:");
+                Console.WriteLine(mnist.trainingImages[i]);
+                Console.WriteLine("trainingLabels[" + i + "]:");
+                Console.WriteLine(mnist.trainingLabels[i]);
+
+                Console.WriteLine("Enter non-empty line to quit!");
+            }
+
         }
 
         static void testClassMNIST()
